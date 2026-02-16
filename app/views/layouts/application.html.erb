@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>window.__DEV__ = <%= Rails.env.development? %></script>
+    <title><%= content_for(:title) || "Kjv Rails" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-zinc-900 text-zinc-100">
+    <header>
+      <nav class="bg-zinc-950 text-zinc-100 border-b border-zinc-800">
+        <div class="mx-auto max-w-6xl px-4">
+          <div class="flex h-14 items-center justify-between">
+            <div class="flex items-center gap-6">
+              <%= link_to 'KJV-Rails.com', root_path, class: "font-semibold tracking-tight hover:text-white" %>
+            </div>
+          </div>
+
+        </div>
+        
+      </nav>
+    </header>
+    <main class="container mx-auto mt-28 px-5 flex">
+      <%= yield %>
+    </main>
+  </body>
+</html>

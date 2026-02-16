@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "pagination" do %>
+  <%= render @verses %>
+
+  <% if @next_cursor %>
+    <%= turbo_frame_tag "pagination",
+          src: verses_next_read_path(verse_id: @next_cursor),
+          loading: :lazy %>
+  <% end %>
+<% end %>
+

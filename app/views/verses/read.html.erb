@@ -1,0 +1,11 @@
+<div>
+  <div id="verses">
+    <%= render @verses %>
+  </div>     
+
+  <% if @next_cursor %>
+    <div data-controller="next-read" data-next-read-url-value="<%= verses_next_read_path %>?verse_id=<%= @next_cursor %>">
+      <p data-next-read-target="loading">Loading...</p>
+    </div>
+  <% end %>
+</div>
